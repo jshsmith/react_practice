@@ -1,22 +1,29 @@
+<!-- Chapter 4: Getting Started with React
+    Notes: 
+        * Removing DOM methods that are using plain Javascript.
+        * Replacing with ReactDOM methods.
+-->
 <html>
     <body>
         <div id="app"></div>
-        <!-- Specifies language we're using: JS. Sometimes use JSX.-->
-        <script type="text/javascript">
-            // Selects the element witht he corresponding Id.
-            const app = document.getElementById('app');
+        <!-- The core React library provided in the tutorial.-->
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+        <!-- Library that provides DOM-specific methods for using React with the DOM.-->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- Specifies language we're using: JS. Sometimes use JSX." -->
+        <!-- Have to change the below type to text/JSX.-->
+        <!-- Using a JS compiler (Babel) to transform JSX -> JS.-->
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/jsx">
+
+            const domNode = document.getElementById('app');
+            const root = ReactDOM.createRoot(domNode);
             
-            // Creates an h1 element within header. -->
-            const header = document.createElement('h1');
-
-            const text = 'Develop. Preview. Ship.';
-            const headerContent = document.createTextNode(text);
-
-            // Adds the headerContent into the h1 element.
-            header.appendChild(headerContent);
-
-            // Adds the h1 element into the element with the Id given by "app".
-            app.appendChild(header);
+            // Outputs the DOM element to the screen.
+            // The "<h1> ... </h1> doe is JSX, not JS."
+            root.render(<h1>Develop. Preview. Ship.</h1>);
         </script> 
     </body>
 </html>
