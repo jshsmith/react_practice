@@ -1,13 +1,7 @@
-<!-- Chapter 6: Displaying Data with Props
-    Notes: 
-        * Can use curly braces to add any JS expression.
-            * Object property (obj.property)
-            * Template literal ("using `Text {$var}`")
-            * Returned value of a function:
-                * {functionName(params)}
-            * Ternary operators
-        * Using /*, */ to comment for single/multi-line comments.
-            * Needs curly braces before/after as well for JSX.
+<!--Chapter 7 - Adding Interactivity with State
+        * Learned about the React Hook useState() to manage states.
+        * Learned about using state value, updating, and
+            calling the state updater function within a function. 
 -->
 <html>
     <body>
@@ -42,6 +36,28 @@
             function Homepage() {
                 const names = ['Alpha', 'Bravo', 'Charlie'];
                 
+                {/*
+                    First item in the array: the state **value**.
+                        * Can be named anything.
+                    Second item: function to **update the value**.
+                        * Can be named anything, but typical to prefix
+                        * with **set** followed by name of state variable:
+                    Within useState():
+                        * Can pass a parameter to give an initial value to
+                        * the first item. 
+                            * Example below: numberOfLikes = 0
+                */}
+                const [numOfLikes, setNumOfLikes] = React.useState(0);
+
+                function handleClick() {
+                    console.log("Increment like count");
+                    {/*
+                        Below is the "state updater function":
+                        Updates the state. 
+                    */}
+                    setNumOfLikes(numOfLikes + 1);
+                }
+
                 return (
                     <div>
                         <Header title="React" />
@@ -60,6 +76,7 @@
                                 <li key={name}>{name}</li>
                             ))}
                         </ul>
+                        <button onClick={handleClick}>Like({numOfLikes})</button>
                     </div>
                 );
             }
