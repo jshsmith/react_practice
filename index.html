@@ -1,7 +1,10 @@
-<!-- Chapter 4: Getting Started with React
+<!-- Chapter 5: Building UI with Components
     Notes: 
-        * Removing DOM methods that are using plain Javascript.
-        * Replacing with ReactDOM methods.
+        * Components - self-contained snippets of codes.
+            * Components are **functions** that __returns UI elements.__
+            * Should be capitalized to distinguish from plain HTML.
+            * Use with angle brackets (like HTML tags)
+            
 -->
 <html>
     <body>
@@ -17,13 +20,21 @@
         <!-- Using a JS compiler (Babel) to transform JSX -> JS.-->
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/jsx">
+            const app = document.getElementById('app');
 
-            const domNode = document.getElementById('app');
-            const root = ReactDOM.createRoot(domNode);
-            
-            // Outputs the DOM element to the screen.
-            // The "<h1> ... </h1> doe is JSX, not JS."
-            root.render(<h1>Develop. Preview. Ship.</h1>);
+            // Header component.
+            function Header() {
+                return <h1>Develop. Preview. Ship.</h1>;
+            }
+
+            function Homepage() {
+                return <div>
+                    <Header />
+                </div>;
+            }
+
+            const root = ReactDOM.createRoot(app);
+            root.render(<Homepage />);
         </script> 
     </body>
 </html>
