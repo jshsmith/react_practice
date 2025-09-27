@@ -1,10 +1,13 @@
-<!-- Chapter 5: Building UI with Components
+<!-- Chapter 6: Displaying Data with Props
     Notes: 
-        * Components - self-contained snippets of codes.
-            * Components are **functions** that __returns UI elements.__
-            * Should be capitalized to distinguish from plain HTML.
-            * Use with angle brackets (like HTML tags)
-            
+        * Can use curly braces to add any JS expression.
+            * Object property (obj.property)
+            * Template literal ("using `Text {$var}`")
+            * Returned value of a function:
+                * {functionName(params)}
+            * Ternary operators
+        * Using /*, */ to comment for single/multi-line comments.
+            * Needs curly braces before/after as well for JSX.
 -->
 <html>
     <body>
@@ -23,14 +26,42 @@
             const app = document.getElementById('app');
 
             // Header component.
-            function Header() {
-                return <h1>Develop. Preview. Ship.</h1>;
+            function Header({ title }) {
+                // displays that props is an Object with title "React".
+                console.log(title);
+                {/*
+                    Below code: Returns the actual word "title".
+                    Want it to display the value in title ("React"):
+                    Have to tell it's a JS variable (vs plaintext str).
+                    return <h1>title</h1>;
+                    Returns the actual value stored in title.
+                */}
+                    return <h1>{title}</h1>;
             }
 
             function Homepage() {
-                return <div>
-                    <Header />
-                </div>;
+                const names = ['Alpha', 'Bravo', 'Charlie'];
+                
+                return (
+                    <div>
+                        <Header title="React" />
+                        {/* Calls the Header component with a different txt string. */}
+                        <Header title ="A new title" />
+
+                        <Header title="Develop. Preview. Ship." />
+                        <ul>
+                            {/*
+                                Iterates through the names array, with
+                                "name" as the iterator, outputs the corresponding
+                                value from the array as a list item.
+                                Warning: Each child should have unique "key":
+                            */}
+                            {names.map((name) => (
+                                <li key={name}>{name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                );
             }
 
             const root = ReactDOM.createRoot(app);
